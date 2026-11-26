@@ -4,6 +4,7 @@ import { BookOpen, Download, Lock, Play, Star, Trophy, Volume2, VolumeX } from '
 import { getAnimalById } from '../data/animals';
 import { AnimalCanvas } from './AnimalCanvas';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { useFirebaseAuth } from '../context/FirebaseProvider';
 
 interface HomeScreenProps {
   totalStars: number;
@@ -27,6 +28,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenParentGate,
 }) => {
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
+  const { user } = useFirebaseAuth();
   const [showIOSGuide, setShowIOSGuide] = useState(false);
 
   const dog = getAnimalById('dog');
@@ -106,9 +108,24 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             type="button"
             onClick={onOpenParentGate}
             aria-label="Parent Settings"
-            className="min-w-[64px] min-h-[64px] rounded-2xl bg-white border-[3px] border-[#1A1A2E] shadow-[0_4px_0_#1A1A2E] active:translate-y-0.5 active:shadow-[0_2px_0_#1A1A2E] flex items-center justify-center cursor-pointer"
+            className="relative min-w-[64px] min-h-[64px] rounded-2xl bg-white border-[3px] border-[#1A1A2E] shadow-[0_4px_0_#1A1A2E] active:translate-y-0.5 active:shadow-[0_2px_0_#1A1A2E] flex items-center justify-center cursor-pointer"
           >
-            <Lock className="w-7 h-7 text-[#1A1A2E]" strokeWidth={2.5} />
+            {user?.photoURL ? (
+              <img
+                src={user.photoURL}
+                alt="Parent Account"
+                referrerPolicy="no-referrer"
+                className="w-9 h-9 rounded-full border-2 border-[#1A1A2E] object-cover"
+              />
+            ) : (
+              <Lock className="w-7 h-7 text-[#1A1A2E]" strokeWidth={2.5} />
+            )}
+            {user && (
+              <span
+                aria-hidden="true"
+                className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#3CD62F] border-2 border-[#1A1A2E]"
+              />
+            )}
           </button>
         </div>
       </header>

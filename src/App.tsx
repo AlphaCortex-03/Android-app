@@ -33,6 +33,7 @@ export default function App() {
     updateSettings,
     recordAnimalCompletion,
     clearJustUnlockedLevel,
+    markFirstPaintCompleted,
     setAnimalAccessory,
     resetProgress,
   } = useGameStorage();
@@ -201,6 +202,7 @@ export default function App() {
           key={`${currentAnimal.id}-${paintInstanceKey}`}
           animal={currentAnimal}
           mode={progress.settings.mode}
+          hasCompletedFirstPaint={progress.hasCompletedFirstPaint || completedCount > 0}
           patternHints={progress.settings.patternHints}
           unlockedLevel={progress.unlockedLevel}
           unlockedBrushes={unlockedBrushes}
@@ -210,6 +212,7 @@ export default function App() {
             soundEngine.playPop();
             updateSettings({ mode });
           }}
+          onFirstPaint={markFirstPaintCompleted}
           onSelectAccessory={(acc) => setAnimalAccessory(currentAnimal.id, acc)}
           onComplete={handlePaintComplete}
           onBack={() => {

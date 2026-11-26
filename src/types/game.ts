@@ -141,6 +141,7 @@ export interface GameSettings {
 export interface GameProgress {
   unlockedLevel: number;
   justUnlockedLevel: number | null;
+  hasCompletedFirstPaint: boolean;
   completedAnimals: Record<string, CompletedAnimalRecord>;
   selectedAccessories: Record<string, AccessoryId>;
   settings: GameSettings;

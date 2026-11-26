@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Download, Eye, Music, Trash2, Volume2, X } from 'lucide-react';
+import { Download, Eye, LogIn, LogOut, Music, Trash2, UserCheck, Volume2, X } from 'lucide-react';
 import type { GameSettings } from '../types/game';
 import { usePWAInstall } from '../hooks/usePWAInstall';
+import { useFirebaseAuth } from '../context/FirebaseProvider';
 
 interface ParentGateModalProps {
   settings: GameSettings;
@@ -23,6 +24,7 @@ export const ParentGateModal: React.FC<ParentGateModalProps> = ({
   const holdTimerRef = useRef<number | null>(null);
 
   const { isInstallable, isInstalled, isIOS, install } = usePWAInstall();
+  const { user, authReady, authBusy, authError, signInWithGoogle, logout } = useFirebaseAuth();
 
   const challenge = useMemo(() => {
     const a = 3 + Math.floor(Math.random() * 5);
@@ -143,6 +145,63 @@ export const ParentGateModal: React.FC<ParentGateModalProps> = ({
               Parents Settings
             </h2>
 
+            {/* Firebase Auth (Auth-Only Parent Account) */}
+            <div className="rounded-2xl bg-white border-[3px] border-[#1A1A2E] p-3.5 flex flex-col gap-2.5">
+              {!authReady ? (
+                <div className="text-sm font-bold text-[#1A1A2E]/60">Checking account...</div>
+              ) : user ? (
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    {user.photoURL ? (
+                      <img
+                        src={user.photoURL}
+                        alt={user.displayName || 'Parent'}
+                        referrerPolicy="no-referrer"
+                        className="w-10 h-10 rounded-full border-2 border-[#1A1A2E] shrink-0 object-cover"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-[#3CD62F] border-2 border-[#1A1A2E] flex items-center justify-center shrink-0">
+                        <UserCheck className="w-5 h-5 text-white" />
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <p className="font-display font-bold text-sm text-[#1A1A2E] truncate">
+                        {user.displayName || 'Signed-in Parent'}
+                      </p>
+                      {user.email && (
+                        <p className="text-xs font-bold text-[#1A1A2E]/60 truncate">
+                          {user.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    disabled={authBusy}
+                    onClick={() => void logout()}
+                    className="min-h-[44px] px-3 rounded-xl bg-[#FFF8E7] border-2 border-[#1A1A2E] font-display text-sm font-bold text-[#1A1A2E] flex items-center gap-1.5 cursor-pointer disabled:opacity-50 shrink-0"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Sign out
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  disabled={authBusy}
+                  onClick={() => void signInWithGoogle()}
+                  className="min-h-[52px] px-4 rounded-xl bg-[#1EA7FF] text-white border-2 border-[#1A1A2E] shadow-[0_3px_0_#1A1A2E] active:translate-y-0.5 flex items-center justify-center gap-2 font-display text-base font-bold cursor-pointer disabled:opacity-60"
+                >
+                  <LogIn className="w-5 h-5" />
+                  {authBusy ? 'Signing in...' : 'Sign in with Google'}
+                </button>
+              )}
+
+              {authError && (
+                <p className="text-xs font-bold text-[#FF2E4C] text-center">{authError}</p>
+              )}
+            </div>
+
             {/* SFX Toggle */}
             <button
               type="button"
@@ -252,7 +311,7 @@ export const ParentGateModal: React.FC<ParentGateModalProps> = ({
             )}
 
             <p className="text-center text-xs font-bold text-[#1A1A2E]/55">
-              100% Offline · No Ads · No Data Collected
+              Offline Play Ready · No Ads · Kid-Safe
             </p>
           </div>
         )}

@@ -18,12 +18,14 @@ import { ReferenceThumbnail } from './ReferenceThumbnail';
 interface PaintScreenProps {
   animal: AnimalDefinition;
   mode: PaintMode;
+  hasCompletedFirstPaint: boolean;
   patternHints: boolean;
   unlockedLevel: number;
   unlockedBrushes: BrushEffectDef[];
   unlockedAccessories: AccessoryDef[];
   initialAccessory: AccessoryId;
   onChangeMode: (mode: PaintMode) => void;
+  onFirstPaint: () => void;
   onSelectAccessory: (accessory: AccessoryId) => void;
   onComplete: (
     stars: 1 | 2 | 3,
@@ -36,12 +38,14 @@ interface PaintScreenProps {
 export const PaintScreen: React.FC<PaintScreenProps> = ({
   animal,
   mode,
+  hasCompletedFirstPaint,
   patternHints,
   unlockedLevel,
   unlockedBrushes,
   unlockedAccessories,
   initialAccessory,
   onChangeMode,
+  onFirstPaint,
   onSelectAccessory,
   onComplete,
   onBack,
@@ -55,6 +59,7 @@ export const PaintScreen: React.FC<PaintScreenProps> = ({
   const [nudgePalette, setNudgePalette] = useState(false);
   const [matchedCount, setMatchedCount] = useState(0);
   const [everIdled, setEverIdled] = useState(false);
+  const [hasPaintedOnce, setHasPaintedOnce] = useState(false);
 
   const completedTriggeredRef = useRef(false);
   const splashIdRef = useRef(1);
@@ -65,11 +70,15 @@ export const PaintScreen: React.FC<PaintScreenProps> = ({
     return [...CORE_PALETTE, ...bonus];
   }, [unlockedLevel]);
 
-  // Determine next uncolored region for Guided mode
+  // Only suggest the first region and matching color before the user's very first paint;
+  // after the 1st paint (and on all subsequent images), never suggest which color or section to fill.
+  const suggestionsDisabled =
+    hasCompletedFirstPaint || hasPaintedOnce || Object.keys(fills).length > 0;
+
   const nextGuidedRegion = useMemo(() => {
-    if (mode !== 'guided') return null;
-    return animal.regions.find((r) => !fills[r.id]) || null;
-  }, [animal.regions, fills, mode]);
+    if (mode !== 'guided' || suggestionsDisabled) return null;
+    return animal.regions[0] || null;
+  }, [animal.regions, mode, suggestionsDisabled]);
 
   const resetIdleTimer = useCallback(() => {
     if (idleTimerRef.current !== null) {
@@ -77,13 +86,13 @@ export const PaintScreen: React.FC<PaintScreenProps> = ({
     }
     setShowIdleHint(false);
 
-    if (mode === 'guided' && !completedTriggeredRef.current) {
+    if (mode === 'guided' && !suggestionsDisabled && !completedTriggeredRef.current) {
       idleTimerRef.current = window.setTimeout(() => {
         setShowIdleHint(true);
         setEverIdled(true);
       }, 5000);
     }
-  }, [mode]);
+  }, [mode, suggestionsDisabled]);
 
   useEffect(() => {
     resetIdleTimer();
@@ -144,6 +153,8 @@ export const PaintScreen: React.FC<PaintScreenProps> = ({
     const isExactMatch = region.targetColor.toLowerCase() === selectedColor.toLowerCase();
     const wasAlreadyFilled = Boolean(fills[regionId]);
 
+    setHasPaintedOnce(true);
+    onFirstPaint();
     setUndoStack((prev) => [...prev, fills]);
     setFills((prev) => ({
       ...prev,
@@ -189,6 +200,7 @@ export const PaintScreen: React.FC<PaintScreenProps> = ({
     setUndoStack((prev) => [...prev, fills]);
     setFills({});
     setMatchedCount(0);
+    setHasPaintedOnce(false);
     resetIdleTimer();
   };
 

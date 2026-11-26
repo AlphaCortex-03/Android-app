@@ -9,6 +9,7 @@ const STORAGE_KEY = 'splash-zoo-save-v1';
 const DEFAULT_PROGRESS: GameProgress = {
   unlockedLevel: 1,
   justUnlockedLevel: null,
+  hasCompletedFirstPaint: false,
   completedAnimals: {},
   selectedAccessories: {},
   settings: {
@@ -24,10 +25,14 @@ function loadInitialProgress(): GameProgress {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return DEFAULT_PROGRESS;
     const parsed = JSON.parse(raw) as Partial<GameProgress>;
+    const completedAnimals = parsed.completedAnimals || {};
     return {
       unlockedLevel: typeof parsed.unlockedLevel === 'number' ? Math.max(1, Math.min(LEVELS.length, parsed.unlockedLevel)) : 1,
       justUnlockedLevel: null,
-      completedAnimals: parsed.completedAnimals || {},
+      hasCompletedFirstPaint: Boolean(
+        parsed.hasCompletedFirstPaint || Object.keys(completedAnimals).length > 0
+      ),
+      completedAnimals,
       selectedAccessories: parsed.selectedAccessories || {},
       settings: {
         ...DEFAULT_PROGRESS.settings,
@@ -117,6 +122,12 @@ export function useGameStorage() {
     setProgress((prev) => ({ ...prev, justUnlockedLevel: null }));
   }, []);
 
+  const markFirstPaintCompleted = useCallback(() => {
+    setProgress((prev) =>
+      prev.hasCompletedFirstPaint ? prev : { ...prev, hasCompletedFirstPaint: true }
+    );
+  }, []);
+
   const setAnimalAccessory = useCallback((animalId: string, accessory: AccessoryId) => {
     setProgress((prev) => ({
       ...prev,
@@ -155,6 +166,7 @@ export function useGameStorage() {
     updateSettings,
     recordAnimalCompletion,
     clearJustUnlockedLevel,
+    markFirstPaintCompleted,
     setAnimalAccessory,
     resetProgress,
   };
