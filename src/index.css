@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-cream: #FFF8E7;
+    --bg-sky: #E8F6FF;
+    --ink-navy: #1A1A2E;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+    background-color: #FFF8E7;
+    color: #1A1A2E;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overscroll-behavior: none;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Fredoka', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+  }
+}
+
+@keyframes regionGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 0px rgba(255, 214, 10, 0));
+    opacity: 1;
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 190, 11, 0.95));
+    opacity: 0.88;
+  }
+}
+
+@keyframes gentleBob {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+@keyframes danceJump {
+  0%, 100% {
+    transform: translateY(0) scale(1, 1) rotate(0deg);
+  }
+  20% {
+    transform: translateY(4px) scale(1.06, 0.94) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-20px) scale(0.96, 1.06) rotate(3deg);
+  }
+  75% {
+    transform: translateY(-6px) scale(1.03, 0.98) rotate(-3deg);
+  }
+}
+
+@keyframes splashSpread {
+  0% {
+    transform: scale(0.05);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+.animate-region-glow {
+  animation: regionGlowPulse 1.4s ease-in-out infinite;
+}
+
+.animate-gentle-bob {
+  animation: gentleBob 2.8s ease-in-out infinite;
+}
+
+.animate-dance-jump {
+  animation: danceJump 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-region-glow,
+  .animate-gentle-bob,
+  .animate-dance-jump {
+    animation: none !important;
+  }
+}
