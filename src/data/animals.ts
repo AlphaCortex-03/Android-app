@@ -94,40 +94,65 @@ const LEVEL_1_ANIMALS: AnimalDefinition[] = [
     hasBespokeArt: true,
     regions: [
       {
+        id: 'dog_tail',
+        label: 'Tail',
+        targetColor: C.brown,
+        hintPoint: { x: 318, y: 242 },
+        svgPaths: [
+          'M 278 292 C 334 276 352 224 334 208 C 316 196 300 242 268 266 Z',
+        ],
+      },
+      {
         id: 'dog_body',
         label: 'Body',
         targetColor: C.brown,
-        hintPoint: { x: 200, y: 120 },
+        hintPoint: { x: 145, y: 298 },
         svgPaths: [
-          // Wagging tail
-          'M 278 292 C 334 276 352 224 334 208 C 316 196 300 242 268 266 Z',
-          // Chubby sitting body & paws
           'M 126 244 C 110 278 112 344 136 356 C 154 364 176 358 182 346 C 194 352 206 352 218 346 C 224 358 246 364 264 356 C 288 344 290 278 274 244 Z',
-          // Big round puppy head
+        ],
+      },
+      {
+        id: 'dog_head',
+        label: 'Head',
+        targetColor: C.brown,
+        hintPoint: { x: 200, y: 112 },
+        svgPaths: [
           'M 200 62 C 134 62 94 108 98 168 C 102 224 146 254 200 254 C 254 254 298 224 302 168 C 306 108 266 62 200 62 Z',
         ],
       },
       {
-        id: 'dog_ears',
-        label: 'Ears',
+        id: 'dog_ear_left',
+        label: 'Left Ear',
         targetColor: C.black,
         hintPoint: { x: 88, y: 158 },
         svgPaths: [
-          // Left floppy ear
           'M 112 98 C 72 100 54 158 66 200 C 76 226 106 216 112 186 C 118 156 116 122 112 98 Z',
-          // Right floppy ear
+        ],
+      },
+      {
+        id: 'dog_ear_right',
+        label: 'Right Ear',
+        targetColor: C.black,
+        hintPoint: { x: 312, y: 158 },
+        svgPaths: [
           'M 288 98 C 328 100 346 158 334 200 C 324 226 294 216 288 186 C 282 156 284 122 288 98 Z',
         ],
       },
       {
-        id: 'dog_face_belly',
-        label: 'Face & Belly',
+        id: 'dog_face',
+        label: 'Face Patch',
         targetColor: C.white,
-        hintPoint: { x: 200, y: 205 },
+        hintPoint: { x: 200, y: 202 },
         svgPaths: [
-          // Cute puppy muzzle & eye patch
           'M 152 108 C 128 108 114 132 124 156 C 130 170 144 176 146 188 C 142 224 166 244 200 244 C 234 244 258 224 254 188 C 250 172 228 164 200 164 C 184 164 178 152 178 136 C 178 118 168 108 152 108 Z',
-          // Round belly patch
+        ],
+      },
+      {
+        id: 'dog_belly',
+        label: 'Belly',
+        targetColor: C.white,
+        hintPoint: { x: 200, y: 306 },
+        svgPaths: [
           'M 200 264 C 170 264 156 296 164 332 C 172 346 228 346 236 332 C 244 296 230 264 200 264 Z',
         ],
       },
@@ -181,47 +206,103 @@ const LEVEL_1_ANIMALS: AnimalDefinition[] = [
     hasBespokeArt: true,
     regions: [
       {
+        id: 'cat_tail',
+        label: 'Tail',
+        targetColor: C.orange,
+        hintPoint: { x: 286, y: 300 },
+        svgPaths: [
+          'M 244 334 C 296 340 318 292 294 276 C 276 264 268 302 240 306 Z',
+        ],
+      },
+      {
         id: 'cat_body',
         label: 'Body',
         targetColor: C.orange,
-        hintPoint: { x: 185, y: 145 },
+        hintPoint: { x: 190, y: 312 },
         svgPaths: [
-          // Curled tail
-          'M 244 334 C 296 340 318 292 294 276 C 276 264 268 302 240 306 Z',
-          // Plump kitty body
           'M 122 238 C 102 276 106 346 138 356 C 166 364 218 364 244 356 C 274 346 276 276 254 238 Z',
-          // Big round head + pointy cat ears
+        ],
+      },
+      {
+        id: 'cat_head',
+        label: 'Head',
+        targetColor: C.orange,
+        hintPoint: { x: 190, y: 145 },
+        svgPaths: [
           'M 124 106 L 106 46 L 160 76 C 174 72 206 72 220 76 L 274 46 L 256 106 C 278 130 284 166 274 198 C 260 236 226 252 190 252 C 154 252 120 236 106 198 C 96 166 102 130 124 106 Z',
         ],
       },
       {
-        id: 'cat_stripes',
-        label: 'Stripes',
+        id: 'cat_stripes_head',
+        label: 'Head Stripes',
         targetColor: C.brown,
         hintPoint: { x: 190, y: 92 },
         svgPaths: [
-          // Forehead stripes
           'M 176 74 L 182 106 L 198 106 L 204 74 Z',
           'M 150 78 L 160 104 L 170 100 L 164 76 Z',
           'M 216 76 L 210 100 L 220 104 L 230 78 Z',
-          // Side cheek stripes
+        ],
+      },
+      {
+        id: 'cat_cheek_left',
+        label: 'Left Cheek Stripe',
+        targetColor: C.brown,
+        hintPoint: { x: 116, y: 169 },
+        svgPaths: [
           'M 104 162 L 130 166 L 128 176 L 102 174 Z',
+        ],
+      },
+      {
+        id: 'cat_cheek_right',
+        label: 'Right Cheek Stripe',
+        targetColor: C.brown,
+        hintPoint: { x: 264, y: 169 },
+        svgPaths: [
           'M 276 162 L 250 166 L 252 176 L 278 174 Z',
-          // Belly stripes
+        ],
+      },
+      {
+        id: 'cat_belly_left',
+        label: 'Left Body Stripe',
+        targetColor: C.brown,
+        hintPoint: { x: 132, y: 290 },
+        svgPaths: [
           'M 118 282 L 150 286 L 148 298 L 114 294 Z',
+        ],
+      },
+      {
+        id: 'cat_belly_right',
+        label: 'Right Body Stripe',
+        targetColor: C.brown,
+        hintPoint: { x: 246, y: 290 },
+        svgPaths: [
           'M 260 282 L 228 286 L 230 298 L 264 294 Z',
         ],
       },
       {
-        id: 'cat_nose',
-        label: 'Nose & Ears',
+        id: 'cat_ear_left',
+        label: 'Left Inner Ear',
         targetColor: C.pink,
-        hintPoint: { x: 190, y: 184 },
+        hintPoint: { x: 128, y: 84 },
         svgPaths: [
-          // Inner ears
           'M 126 98 L 118 66 L 146 84 Z',
+        ],
+      },
+      {
+        id: 'cat_ear_right',
+        label: 'Right Inner Ear',
+        targetColor: C.pink,
+        hintPoint: { x: 252, y: 84 },
+        svgPaths: [
           'M 254 98 L 262 66 L 234 84 Z',
-          // Cute triangle nose
+        ],
+      },
+      {
+        id: 'cat_nose',
+        label: 'Nose',
+        targetColor: C.pink,
+        hintPoint: { x: 190, y: 180 },
+        svgPaths: [
           'M 176 176 C 176 168 204 168 204 176 C 204 186 194 192 190 192 C 186 192 176 186 176 176 Z',
         ],
       },
@@ -276,41 +357,83 @@ const LEVEL_1_ANIMALS: AnimalDefinition[] = [
     hasBespokeArt: true,
     regions: [
       {
+        id: 'cow_ear_left',
+        label: 'Left Ear',
+        targetColor: C.white,
+        hintPoint: { x: 88, y: 124 },
+        svgPaths: [
+          'M 110 108 C 72 98 58 124 76 144 C 92 156 112 142 118 126 Z',
+        ],
+      },
+      {
+        id: 'cow_ear_right',
+        label: 'Right Ear',
+        targetColor: C.white,
+        hintPoint: { x: 312, y: 124 },
+        svgPaths: [
+          'M 290 108 C 328 98 342 124 324 144 C 308 156 288 142 282 126 Z',
+        ],
+      },
+      {
         id: 'cow_body',
         label: 'Body',
         targetColor: C.white,
-        hintPoint: { x: 200, y: 120 },
+        hintPoint: { x: 200, y: 316 },
         svgPaths: [
-          // Ears
-          'M 110 108 C 72 98 58 124 76 144 C 92 156 112 142 118 126 Z',
-          'M 290 108 C 328 98 342 124 324 144 C 308 156 288 142 282 126 Z',
-          // Chubby cow body & legs
           'M 118 228 C 98 266 102 342 128 356 C 148 364 170 356 174 342 L 226 342 C 230 356 252 364 272 356 C 298 342 302 266 282 228 Z',
-          // Big round head
+        ],
+      },
+      {
+        id: 'cow_head',
+        label: 'Head',
+        targetColor: C.white,
+        hintPoint: { x: 200, y: 118 },
+        svgPaths: [
           'M 200 68 C 138 68 102 108 104 164 C 106 218 144 246 200 246 C 256 246 294 218 296 164 C 298 108 262 68 200 68 Z',
         ],
       },
       {
-        id: 'cow_spots',
-        label: 'Spots',
+        id: 'cow_spot_head',
+        label: 'Head Spot',
         targetColor: C.black,
-        hintPoint: { x: 256, y: 112 },
+        hintPoint: { x: 256, y: 108 },
         svgPaths: [
-          // Head spot
           'M 224 74 C 256 76 284 96 290 128 C 266 138 242 124 234 106 C 228 92 220 84 224 74 Z',
-          // Left body spot
+        ],
+      },
+      {
+        id: 'cow_spot_left',
+        label: 'Left Spot',
+        targetColor: C.black,
+        hintPoint: { x: 128, y: 288 },
+        svgPaths: [
           'M 110 264 C 132 258 154 274 150 298 C 146 318 118 320 104 304 Z',
-          // Right body spot
+        ],
+      },
+      {
+        id: 'cow_spot_right',
+        label: 'Right Spot',
+        targetColor: C.black,
+        hintPoint: { x: 270, y: 306 },
+        svgPaths: [
           'M 262 284 C 284 278 296 298 290 322 C 276 334 252 326 248 306 Z',
         ],
       },
       {
-        id: 'cow_horns',
-        label: 'Horns',
+        id: 'cow_horn_left',
+        label: 'Left Horn',
         targetColor: C.yellow,
-        hintPoint: { x: 136, y: 66 },
+        hintPoint: { x: 130, y: 70 },
         svgPaths: [
           'M 148 80 C 136 52 114 48 112 66 C 110 82 126 92 140 90 Z',
+        ],
+      },
+      {
+        id: 'cow_horn_right',
+        label: 'Right Horn',
+        targetColor: C.yellow,
+        hintPoint: { x: 270, y: 70 },
+        svgPaths: [
           'M 252 80 C 264 52 286 48 288 66 C 290 82 274 92 260 90 Z',
         ],
       },
@@ -377,20 +500,33 @@ const LEVEL_1_ANIMALS: AnimalDefinition[] = [
         targetColor: C.yellow,
         hintPoint: { x: 195, y: 120 },
         svgPaths: [
-          // Fluffy duck body with tail & head tuft
           'M 196 58 C 188 42 204 34 212 46 C 220 38 232 46 222 60 C 260 66 286 98 284 142 C 282 174 264 198 246 208 C 280 220 310 244 326 226 C 340 212 344 248 318 282 C 292 316 244 322 198 322 C 138 322 104 294 106 250 C 108 216 132 198 144 192 C 122 178 112 150 116 120 C 122 80 156 58 196 58 Z',
         ],
       },
       {
-        id: 'duck_beak_feet',
-        label: 'Beak & Feet',
+        id: 'duck_beak',
+        label: 'Beak',
         targetColor: C.orange,
-        hintPoint: { x: 112, y: 158 },
+        hintPoint: { x: 112, y: 162 },
         svgPaths: [
-          // Big cheerful duck bill
           'M 134 142 C 92 142 74 156 76 170 C 78 184 114 190 152 180 C 160 172 156 142 134 142 Z',
-          // Webbed feet peeking at pond edge
+        ],
+      },
+      {
+        id: 'duck_foot_left',
+        label: 'Left Foot',
+        targetColor: C.orange,
+        hintPoint: { x: 158, y: 330 },
+        svgPaths: [
           'M 150 314 L 136 342 L 178 342 L 166 314 Z',
+        ],
+      },
+      {
+        id: 'duck_foot_right',
+        label: 'Right Foot',
+        targetColor: C.orange,
+        hintPoint: { x: 240, y: 330 },
+        svgPaths: [
           'M 232 314 L 220 342 L 262 342 L 246 314 Z',
         ],
       },
@@ -444,17 +580,38 @@ const LEVEL_1_ANIMALS: AnimalDefinition[] = [
         ],
       },
       {
-        id: 'pig_body_ears',
-        label: 'Body & Ears',
+        id: 'pig_ear_left',
+        label: 'Left Ear',
         targetColor: C.pink,
-        hintPoint: { x: 200, y: 274 },
+        hintPoint: { x: 102, y: 124 },
         svgPaths: [
-          // Floppy cute piggy ears
           'M 128 118 C 96 86 78 106 86 138 C 94 156 116 154 128 142 Z',
+        ],
+      },
+      {
+        id: 'pig_ear_right',
+        label: 'Right Ear',
+        targetColor: C.pink,
+        hintPoint: { x: 298, y: 124 },
+        svgPaths: [
           'M 272 118 C 304 86 322 106 314 138 C 306 156 284 154 272 142 Z',
-          // Chubby piggy body & legs
+        ],
+      },
+      {
+        id: 'pig_body',
+        label: 'Body',
+        targetColor: C.pink,
+        hintPoint: { x: 200, y: 286 },
+        svgPaths: [
           'M 122 232 C 100 264 106 332 134 342 C 154 348 168 342 172 328 L 228 328 C 232 342 246 348 266 342 C 294 332 300 264 278 232 Z',
-          // Big round head
+        ],
+      },
+      {
+        id: 'pig_head',
+        label: 'Head',
+        targetColor: C.pink,
+        hintPoint: { x: 200, y: 120 },
+        svgPaths: [
           'M 200 84 C 138 84 102 122 104 174 C 106 226 144 254 200 254 C 256 254 294 226 296 174 C 298 122 262 84 200 84 Z',
         ],
       },
@@ -471,9 +628,8 @@ const LEVEL_1_ANIMALS: AnimalDefinition[] = [
         id: 'pig_hat',
         label: 'Hat',
         targetColor: C.yellow,
-        hintPoint: { x: 200, y: 60 },
+        hintPoint: { x: 200, y: 66 },
         svgPaths: [
-          // Cute sun hat / party cap
           'M 152 86 C 154 44 246 44 248 86 Z',
           'M 124 86 C 156 76 244 76 276 86 C 276 98 244 102 200 102 C 156 102 124 98 124 86 Z',
         ],
@@ -518,32 +674,34 @@ interface CompactAnimalSpec {
 }
 
 function buildStructuredAnimal(spec: CompactAnimalSpec): AnimalDefinition {
-  const templates: Record<SilhouetteArchetype, { slots: string[][]; hints: Array<{ x: number; y: number }>; fg: StaticLayer[] }> = {
+  const templates: Record<
+    SilhouetteArchetype,
+    { slots: Array<Array<{ path: string; hint: { x: number; y: number }; suffix?: string }>>; fg: StaticLayer[] }
+  > = {
     quadruped: {
       slots: [
-        // 0: Body + Head
+        // 0: Body then Head individually so head overlaps neck cleanly
         [
-          'M 122 232 C 102 268 108 344 138 354 L 262 354 C 292 344 298 268 278 232 Z',
-          'M 200 74 C 138 74 102 114 104 166 C 106 218 144 246 200 246 C 256 246 294 218 296 166 C 298 114 262 74 200 74 Z',
+          { path: 'M 122 232 C 102 268 108 344 138 354 L 262 354 C 292 344 298 268 278 232 Z', hint: { x: 200, y: 292 }, suffix: 'body' },
+          { path: 'M 200 74 C 138 74 102 114 104 166 C 106 218 144 246 200 246 C 256 246 294 218 296 166 C 298 114 262 74 200 74 Z', hint: { x: 200, y: 120 }, suffix: 'head' },
         ],
-        // 1: Ears / Mane / Crest
+        // 1: Left & Right Ears individually
         [
-          'M 120 104 C 84 82 72 118 92 142 C 106 154 118 136 120 104 Z',
-          'M 280 104 C 316 82 328 118 308 142 C 294 154 282 136 280 104 Z',
+          { path: 'M 120 104 C 84 82 72 118 92 142 C 106 154 118 136 120 104 Z', hint: { x: 96, y: 118 }, suffix: 'left' },
+          { path: 'M 280 104 C 316 82 328 118 308 142 C 294 154 282 136 280 104 Z', hint: { x: 304, y: 118 }, suffix: 'right' },
         ],
-        // 2: Belly / Spots / Stripes
-        ['M 200 264 C 166 264 152 296 160 334 C 174 346 226 346 240 334 C 248 296 234 264 200 264 Z'],
-        // 3: Nose / Snout / Accessory
-        ['M 200 186 m -32 0 a 32 22 0 1 0 64 0 a 32 22 0 1 0 -64 0'],
-        // 4: Side prop (banana, ball, carrot, flower, grass)
-        ['M 318 310 m -38 0 a 38 38 0 1 0 76 0 a 38 38 0 1 0 -76 0'],
-      ],
-      hints: [
-        { x: 200, y: 120 },
-        { x: 96, y: 118 },
-        { x: 200, y: 300 },
-        { x: 200, y: 186 },
-        { x: 318, y: 310 },
+        // 2: Belly
+        [
+          { path: 'M 200 264 C 166 264 152 296 160 334 C 174 346 226 346 240 334 C 248 296 234 264 200 264 Z', hint: { x: 200, y: 300 } },
+        ],
+        // 3: Snout / Nose
+        [
+          { path: 'M 200 186 m -32 0 a 32 22 0 1 0 64 0 a 32 22 0 1 0 -64 0', hint: { x: 200, y: 186 } },
+        ],
+        // 4: Side prop
+        [
+          { path: 'M 318 310 m -38 0 a 38 38 0 1 0 76 0 a 38 38 0 1 0 -76 0', hint: { x: 318, y: 310 } },
+        ],
       ],
       fg: [
         { d: 'M 156 138 m -17 0 a 17 17 0 1 0 34 0 a 17 17 0 1 0 -34 0', fill: '#FFFFFF', stroke: '#1A1A2E', strokeWidth: 5 },
@@ -557,18 +715,17 @@ function buildStructuredAnimal(spec: CompactAnimalSpec): AnimalDefinition {
     },
     bird: {
       slots: [
-        ['M 200 84 C 136 84 106 138 110 206 C 114 276 146 318 200 318 C 254 318 286 276 290 206 C 294 138 264 84 200 84 Z'],
-        ['M 110 184 C 66 196 58 248 92 272 C 112 284 126 254 124 222 Z', 'M 290 184 C 334 196 342 248 308 272 C 288 284 274 254 276 222 Z'],
-        ['M 200 204 C 166 204 148 240 156 286 C 166 304 234 304 244 286 C 252 240 234 204 200 204 Z'],
-        ['M 178 164 L 222 164 L 200 202 Z'],
-        ['M 142 320 L 130 356 L 176 356 Z', 'M 258 320 L 224 356 L 270 356 Z'],
-      ],
-      hints: [
-        { x: 200, y: 120 },
-        { x: 88, y: 230 },
-        { x: 200, y: 256 },
-        { x: 200, y: 178 },
-        { x: 152, y: 342 },
+        [{ path: 'M 200 84 C 136 84 106 138 110 206 C 114 276 146 318 200 318 C 254 318 286 276 290 206 C 294 138 264 84 200 84 Z', hint: { x: 200, y: 120 } }],
+        [
+          { path: 'M 110 184 C 66 196 58 248 92 272 C 112 284 126 254 124 222 Z', hint: { x: 88, y: 230 }, suffix: 'left' },
+          { path: 'M 290 184 C 334 196 342 248 308 272 C 288 284 274 254 276 222 Z', hint: { x: 312, y: 230 }, suffix: 'right' },
+        ],
+        [{ path: 'M 200 204 C 166 204 148 240 156 286 C 166 304 234 304 244 286 C 252 240 234 204 200 204 Z', hint: { x: 200, y: 256 } }],
+        [{ path: 'M 178 164 L 222 164 L 200 202 Z', hint: { x: 200, y: 178 } }],
+        [
+          { path: 'M 142 320 L 130 356 L 176 356 Z', hint: { x: 152, y: 342 }, suffix: 'left' },
+          { path: 'M 258 320 L 224 356 L 270 356 Z', hint: { x: 248, y: 342 }, suffix: 'right' },
+        ],
       ],
       fg: [
         { d: 'M 162 136 m -18 0 a 18 18 0 1 0 36 0 a 18 18 0 1 0 -36 0', fill: '#FFFFFF', stroke: '#1A1A2E', strokeWidth: 5 },
@@ -581,18 +738,14 @@ function buildStructuredAnimal(spec: CompactAnimalSpec): AnimalDefinition {
     },
     aquatic: {
       slots: [
-        ['M 186 112 C 110 112 72 158 74 206 C 76 254 118 292 192 292 C 258 292 294 252 298 206 C 302 158 258 112 186 112 Z'],
-        ['M 294 204 L 358 152 C 364 188 364 222 358 258 Z'],
-        ['M 186 218 C 136 218 112 246 124 274 C 146 288 228 288 252 272 C 260 244 236 218 186 218 Z'],
-        ['M 92 104 m -22 0 a 22 22 0 1 0 44 0 a 22 22 0 1 0 -44 0', 'M 64 64 m -14 0 a 14 14 0 1 0 28 0 a 14 14 0 1 0 -28 0'],
-        ['M 68 342 C 120 318 280 318 332 342 C 332 368 68 368 68 342 Z'],
-      ],
-      hints: [
-        { x: 185, y: 164 },
-        { x: 334, y: 204 },
-        { x: 188, y: 254 },
-        { x: 92, y: 104 },
-        { x: 200, y: 344 },
+        [{ path: 'M 186 112 C 110 112 72 158 74 206 C 76 254 118 292 192 292 C 258 292 294 252 298 206 C 302 158 258 112 186 112 Z', hint: { x: 185, y: 164 } }],
+        [{ path: 'M 294 204 L 358 152 C 364 188 364 222 358 258 Z', hint: { x: 334, y: 204 } }],
+        [{ path: 'M 186 218 C 136 218 112 246 124 274 C 146 288 228 288 252 272 C 260 244 236 218 186 218 Z', hint: { x: 188, y: 254 } }],
+        [
+          { path: 'M 92 104 m -22 0 a 22 22 0 1 0 44 0 a 22 22 0 1 0 -44 0', hint: { x: 92, y: 104 }, suffix: 'b1' },
+          { path: 'M 64 64 m -14 0 a 14 14 0 1 0 28 0 a 14 14 0 1 0 -28 0', hint: { x: 64, y: 64 }, suffix: 'b2' },
+        ],
+        [{ path: 'M 68 342 C 120 318 280 318 332 342 C 332 368 68 368 68 342 Z', hint: { x: 200, y: 344 } }],
       ],
       fg: [
         { d: 'M 142 166 m -18 0 a 18 18 0 1 0 36 0 a 18 18 0 1 0 -36 0', fill: '#FFFFFF', stroke: '#1A1A2E', strokeWidth: 5 },
@@ -604,18 +757,17 @@ function buildStructuredAnimal(spec: CompactAnimalSpec): AnimalDefinition {
     },
     bug: {
       slots: [
-        ['M 200 130 C 138 130 108 182 112 246 C 116 306 148 336 200 336 C 252 336 284 306 288 246 C 292 182 262 130 200 130 Z'],
-        ['M 106 164 C 54 146 42 206 74 236 C 92 252 114 232 114 200 Z', 'M 294 164 C 346 146 358 206 326 236 C 308 252 286 232 286 200 Z'],
-        ['M 164 204 m -18 0 a 18 18 0 1 0 36 0 a 18 18 0 1 0 -36 0', 'M 236 204 m -18 0 a 18 18 0 1 0 36 0 a 18 18 0 1 0 -36 0'],
-        ['M 200 96 m -46 0 a 46 38 0 1 0 92 0 a 46 38 0 1 0 -92 0'],
-        ['M 326 322 m -36 0 a 36 36 0 1 0 72 0 a 36 36 0 1 0 -72 0'],
-      ],
-      hints: [
-        { x: 200, y: 248 },
-        { x: 76, y: 200 },
-        { x: 164, y: 204 },
-        { x: 200, y: 96 },
-        { x: 326, y: 322 },
+        [{ path: 'M 200 130 C 138 130 108 182 112 246 C 116 306 148 336 200 336 C 252 336 284 306 288 246 C 292 182 262 130 200 130 Z', hint: { x: 200, y: 248 } }],
+        [
+          { path: 'M 106 164 C 54 146 42 206 74 236 C 92 252 114 232 114 200 Z', hint: { x: 76, y: 200 }, suffix: 'left' },
+          { path: 'M 294 164 C 346 146 358 206 326 236 C 308 252 286 232 286 200 Z', hint: { x: 324, y: 200 }, suffix: 'right' },
+        ],
+        [
+          { path: 'M 164 204 m -18 0 a 18 18 0 1 0 36 0 a 18 18 0 1 0 -36 0', hint: { x: 164, y: 204 }, suffix: 'left' },
+          { path: 'M 236 204 m -18 0 a 18 18 0 1 0 36 0 a 18 18 0 1 0 -36 0', hint: { x: 236, y: 204 }, suffix: 'right' },
+        ],
+        [{ path: 'M 200 96 m -46 0 a 46 38 0 1 0 92 0 a 46 38 0 1 0 -92 0', hint: { x: 200, y: 96 } }],
+        [{ path: 'M 326 322 m -36 0 a 36 36 0 1 0 72 0 a 36 36 0 1 0 -72 0', hint: { x: 326, y: 322 } }],
       ],
       fg: [
         { d: 'M 178 92 m -14 0 a 14 14 0 1 0 28 0 a 14 14 0 1 0 -28 0', fill: '#FFFFFF', stroke: '#1A1A2E', strokeWidth: 4.5 },
@@ -627,18 +779,14 @@ function buildStructuredAnimal(spec: CompactAnimalSpec): AnimalDefinition {
     },
     round: {
       slots: [
-        ['M 200 96 C 122 96 86 150 90 220 C 94 288 136 326 200 326 C 264 326 306 288 310 220 C 314 150 278 96 200 96 Z'],
-        ['M 200 224 C 154 224 134 256 144 294 C 160 310 240 310 256 294 C 266 256 246 224 200 224 Z'],
-        ['M 110 112 m -34 0 a 34 34 0 1 0 68 0 a 34 34 0 1 0 -68 0', 'M 290 112 m -34 0 a 34 34 0 1 0 68 0 a 34 34 0 1 0 -68 0'],
-        ['M 74 344 C 132 318 268 318 326 344 C 326 372 74 372 74 344 Z'],
-        ['M 200 186 m -28 0 a 28 20 0 1 0 56 0 a 28 20 0 1 0 -56 0'],
-      ],
-      hints: [
-        { x: 200, y: 144 },
-        { x: 200, y: 266 },
-        { x: 110, y: 112 },
-        { x: 200, y: 344 },
-        { x: 200, y: 186 },
+        [{ path: 'M 200 96 C 122 96 86 150 90 220 C 94 288 136 326 200 326 C 264 326 306 288 310 220 C 314 150 278 96 200 96 Z', hint: { x: 200, y: 144 } }],
+        [{ path: 'M 200 224 C 154 224 134 256 144 294 C 160 310 240 310 256 294 C 266 256 246 224 200 224 Z', hint: { x: 200, y: 266 } }],
+        [
+          { path: 'M 110 112 m -34 0 a 34 34 0 1 0 68 0 a 34 34 0 1 0 -68 0', hint: { x: 110, y: 112 }, suffix: 'left' },
+          { path: 'M 290 112 m -34 0 a 34 34 0 1 0 68 0 a 34 34 0 1 0 -68 0', hint: { x: 290, y: 112 }, suffix: 'right' },
+        ],
+        [{ path: 'M 74 344 C 132 318 268 318 326 344 C 326 372 74 372 74 344 Z', hint: { x: 200, y: 344 } }],
+        [{ path: 'M 200 186 m -28 0 a 28 20 0 1 0 56 0 a 28 20 0 1 0 -56 0', hint: { x: 200, y: 186 } }],
       ],
       fg: [
         { d: 'M 156 152 m -18 0 a 18 18 0 1 0 36 0 a 18 18 0 1 0 -36 0', fill: '#FFFFFF', stroke: '#1A1A2E', strokeWidth: 5 },
@@ -651,13 +799,16 @@ function buildStructuredAnimal(spec: CompactAnimalSpec): AnimalDefinition {
   };
 
   const tpl = templates[spec.archetype];
-  const regions: AnimalRegion[] = spec.regions.map((r, idx) => ({
-    id: r.id,
-    label: r.label,
-    targetColor: r.targetColor,
-    svgPaths: tpl.slots[idx % tpl.slots.length],
-    hintPoint: tpl.hints[idx % tpl.hints.length],
-  }));
+  const regions: AnimalRegion[] = spec.regions.flatMap((r, idx) => {
+    const slotItems = tpl.slots[idx % tpl.slots.length];
+    return slotItems.map((item, sIdx) => ({
+      id: item.suffix ? `${r.id}_${item.suffix}` : slotItems.length > 1 ? `${r.id}_${sIdx + 1}` : r.id,
+      label: r.label,
+      targetColor: r.targetColor,
+      svgPaths: [item.path],
+      hintPoint: item.hint,
+    }));
+  });
 
   return {
     id: spec.id,

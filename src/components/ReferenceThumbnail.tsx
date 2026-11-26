@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { AnimalDefinition } from '../types/game';
 import { AnimalCanvas } from './AnimalCanvas';
 
@@ -14,6 +14,11 @@ export const ReferenceThumbnail: React.FC<ReferenceThumbnailProps> = ({ animal }
     targetFills[r.id] = r.targetColor;
   });
 
+  const uniqueColors = useMemo(
+    () => Array.from(new Set(animal.regions.map((r) => r.targetColor))),
+    [animal.regions]
+  );
+
   return (
     <>
       <button
@@ -26,11 +31,11 @@ export const ReferenceThumbnail: React.FC<ReferenceThumbnailProps> = ({ animal }
           <AnimalCanvas animal={animal} fills={targetFills} />
         </div>
         <div className="grid grid-cols-2 gap-1 pr-1">
-          {animal.regions.map((r) => (
+          {uniqueColors.map((hex) => (
             <span
-              key={r.id}
+              key={hex}
               className="w-3.5 h-3.5 rounded-full border-2 border-[#1A1A2E]"
-              style={{ backgroundColor: r.targetColor }}
+              style={{ backgroundColor: hex }}
             />
           ))}
         </div>
@@ -49,11 +54,11 @@ export const ReferenceThumbnail: React.FC<ReferenceThumbnailProps> = ({ animal }
               <AnimalCanvas animal={animal} fills={targetFills} />
             </div>
             <div className="flex flex-wrap items-center justify-center gap-2.5">
-              {animal.regions.map((r) => (
+              {uniqueColors.map((hex) => (
                 <span
-                  key={r.id}
+                  key={hex}
                   className="w-8 h-8 rounded-full border-[3px] border-[#1A1A2E] shadow-xs"
-                  style={{ backgroundColor: r.targetColor }}
+                  style={{ backgroundColor: hex }}
                 />
               ))}
             </div>
